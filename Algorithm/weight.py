@@ -12,14 +12,13 @@ compare_weight = [A_weight, B_weight, C_weight]
 
 
 def check_power(weights):
-    """计算总和"""
-    power_count = sum(_weight.power for _weight in weights)
     """权重区间"""
     power_list = list(get_power_list(weights))
     """随机权重"""
-    random_power = random.uniform(0, power_count)
+    random_power = random.uniform(0, power_list[-1])
     """权重落点"""
-    fit = weights[bisect.bisect(power_list, random_power)]
+    random_choice = bisect.bisect(power_list, random_power)
+    fit = weights[random_choice]
     return fit
 
 
